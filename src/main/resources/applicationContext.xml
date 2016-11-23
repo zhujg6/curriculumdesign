@@ -11,7 +11,7 @@
   	<context:annotation-config />
 	<!-- 设定Spring 去哪些包中找Annotation -->
 	
-	<context:component-scan base-package="com.car.bean"/>
+	<context:component-scan base-package="com.secondcar.dao"/>
     <!-- 导入外部的properties文件 -->
     <import resource="applicationContext_dao.xml"/>
     <import resource="applicationContext_service.xml"/>
