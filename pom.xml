@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>curriculumdesign Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  
+  <!-- 123 -->
   <properties>
 		<!-- spring版本号 -->
 		<spring.version>4.2.1.RELEASE</spring.version>
