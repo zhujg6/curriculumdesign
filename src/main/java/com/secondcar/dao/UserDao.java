@@ -2,6 +2,8 @@ package com.secondcar.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.secondcar.bean.User;
 
 public interface UserDao {
@@ -24,6 +26,6 @@ public interface UserDao {
 	 * @return
 	 */
 	
-	public List<User> queryUserByEmail(String email);
+	public List<User> queryUserByEmail(@Param(value="email")String email);
 	
 }

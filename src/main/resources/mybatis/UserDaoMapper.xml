@@ -41,7 +41,7 @@
 		create_time ,
 	</if>
 	<if test="updateTime!=null and updateTime!=''">	
-		update_time
+		update_time,
 	</if>	 	
 	</trim>
 	)values (
@@ -65,8 +65,26 @@
 			#{createTime},
 		</if>
 		<if test="updateTime!=null and updateTime!=''">
-			#{updateTime}
+			#{updateTime},
 		</if>
 			</trim>	)
 	</insert>
+	
+	<select id="queryUserByEmail" parameterType="string" resultType="com.secondcar.bean.User">
+			select 
+				id as id,
+				name as name,
+				password as password,
+				email as email,
+				tel as tel,
+				role_id as roleId,
+				create_time as createTime,
+				update_time as updateTime
+			from users
+			where 1=1
+				<if test="null!=email and ''!=email">
+					and email = #{email}
+				</if>
+	</select>
+	
 </mapper>
