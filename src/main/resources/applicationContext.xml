@@ -14,7 +14,6 @@
 	<context:component-scan base-package="com.secondcar.dao"/>
     <!-- 导入外部的properties文件 -->
     <import resource="applicationContext_dao.xml"/>
-    <import resource="applicationContext_service.xml"/>
  <context:property-placeholder location="classpath:db.properties"/>
 
 <!-- 配置数据源 -->
@@ -69,7 +68,7 @@ name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
 </bean>
 
 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-<property name="basePackage" value="com.car.dao" />
+<property name="basePackage" value="com.secondcar.dao" />
 <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 </bean>
  
@@ -77,11 +76,12 @@ name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
  	
     
    <!-- 配置事务管理器 -->
+   
 <bean id="transactionManager"
 class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 <property name="dataSource" ref="dataSource" />
 </bean>
-
+<!--  
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
@@ -89,7 +89,8 @@ class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut expression="execution(* com.car.service.*.*(..))" id="pointCut"/>
+		<aop:pointcut expression="execution(* com.secondcar.service.*.*(..))" id="pointCut"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>
 	</aop:config>
+	-->
 </beans>
