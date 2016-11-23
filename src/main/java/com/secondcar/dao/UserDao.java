@@ -20,10 +20,10 @@ public interface UserDao {
 	public int addUser(User user);
 	/**
 	 * 根据邮箱查询用户信息
-	 * @param Emali
+	 * @param email
 	 * @return
 	 */
 	
-	public List<User> queryUserByEmail(String Emali);
+	public List<User> queryUserByEmail(String email);
 	
 }
