@@ -25,11 +25,5 @@ public interface UserDao {
 	 */
 	
 	public List<User> queryUserByEmail(String Emali);
-	/**
-	 * 修改用户信息
-	 * @param user
-	 * @return
-	 */
-	public int updateUser(User user);
 	
 }
