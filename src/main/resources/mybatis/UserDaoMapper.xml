@@ -19,4 +19,54 @@
 					and password = #{password}
 				</if>
 	</select>
+	<insert id="addUser" parameterType="com.secondcar.bean.User">
+	insert into users (
+	<trim suffixOverrides=",">
+	<if test="name!=null and name!=''">
+		name ,
+	</if>
+	<if test="password!=null and password!=''">
+		password ,
+	</if>
+	<if test="email!=null and email!=''">
+		email ,
+	</if>	
+	<if test="tel!=null and tel!=''">
+		tel ,
+	</if>
+	<if test="roleId!=null and roleId!=''">	
+		role_id ,
+	</if>
+	<if test="createTime!=null and createTime!=''">	
+		create_time ,
+	</if>
+	<if test="updateTime!=null and updateTime!=''">	
+		update_time
+	</if>	 	
+	</trim>
+	)values (
+	<trim suffixOverrides=",">
+		<if test="name!=null and name!=''">
+			#{name},
+		</if>
+		<if test="password!=null and password!=''">
+			#{password},
+		</if>
+		<if test="email!=null and email!=''">
+			#{email},
+		</if>
+		<if test="tel!=null and tel!=''">
+			#{tel},
+		</if>
+		<if test="roleId!=null and roleId!=''">
+			#{roleId},
+		</if>
+		<if test="createTime!=null and createTime!=''">
+			#{createTime},
+		</if>
+		<if test="updateTime!=null and updateTime!=''">
+			#{updateTime}
+		</if>
+			</trim>	)
+	</insert>
 </mapper>
