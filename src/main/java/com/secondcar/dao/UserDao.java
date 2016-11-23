@@ -24,6 +24,6 @@ public interface UserDao {
 	 * @return
 	 */
 	
-	public List<User> queryUserByEmail(String Emali);
+	public List<User> queryUserByEmail(String emali);
 	
 }
