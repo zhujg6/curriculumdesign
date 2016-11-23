@@ -1,3 +1,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper  namespace="com.secondcar.dao.UserDao">
+	<select id="checkLogin" parameterType="com.secondcar.bean.User" resultType="com.secondcar.bean.User">
+			select 
+				id as id,
+				name as name,
+				password as password,
+				email as email,
+				tel as tel,
+				role_id as roleId,
+				create_time as createTime,
+				update_time as updateTime
+			from users
+			where 1=1
+				<if test="email!=null and email!=''">
+					and email = #{email}
+				</if>
+				<if test="password!=null and password!=''">
+					and password = #{password}
+				</if>
+	</select>
 </mapper>
