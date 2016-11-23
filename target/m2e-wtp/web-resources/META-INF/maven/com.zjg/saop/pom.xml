@@ -108,6 +108,5 @@
 		</dependency>
   </dependencies>
   <build>
-    <finalName>saop</finalName>
   </build>
 </project>
