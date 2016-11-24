@@ -10,7 +10,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public ResultInfo insertUser(User user);
+	public ResultInfo addUser(User user);
 	/**
 	 * ÓÃ»§µÇÂ¼
 	 * @param user
