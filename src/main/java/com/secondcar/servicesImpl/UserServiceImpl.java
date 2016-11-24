@@ -3,11 +3,14 @@ package com.secondcar.servicesImpl;
 
 
 
+import java.util.Date;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.secondcar.bean.User;
 import com.secondcar.comm.BeanFactoryUtil;
+import com.secondcar.comm.Constants;
 import com.secondcar.comm.ResultInfo;
 import com.secondcar.dao.UserDao;
 import com.secondcar.mail.InitMail;
@@ -26,18 +29,46 @@ public class UserServiceImpl implements UserService {
 	public ResultInfo addUser(User user) {
 		ResultInfo ret = new ResultInfo();
 		QueryUser qu = new QueryUser();
+		//判断对象是否为空
 		if(null!=user){
 			//判断邮箱是否已被使用
 			if(	-1 != qu.checkEmail(user.getEmail()).getCode() ){
 				ret.setCode(0);
-				ret.setInfo("注册成功");
+			
+				//判断用户姓名是否为空
+				if(null!=user.getName() && ""!=user.getName()){
+					ret.setCode(0);
+				
+					//判断密码是否为空
+					if(null!=user.getPassword() && ""!=user.getPassword()){
+						ret.setCode(0);
+						
+						//判断电话是否为空
+						if(null!=user.getTel() && ""!=user.getTel()){
+							userDao.addUser(user);
+							ret.setCode(0);
+							ret.setInfo("注册成功");
+						}
+						else{
+							ret.setCode(-1);
+							ret.setInfo("电话不能为空");
+						}
+					}
+					else{
+						ret.setCode(-1);
+						ret.setInfo("密码不能为空");
+					}
+				}
+				else{
+					ret.setCode(-1);
+					ret.setInfo("姓名不能为空");
+				}
 			}
 			else{
 				ret.setCode(-1);
-				ret.setInfo("该邮箱已经被注册");
+				ret.setInfo("该邮箱已被使用");
 			}
-			//判断用户姓名是否为空
-			
+	
 		}
 		else{
 			ret.setCode(-1);
@@ -87,8 +118,18 @@ public class UserServiceImpl implements UserService {
 	public static void main(String[] args) {
 		UserService userService = new UserServiceImpl();
 		User user = new User();
-		user.setEmail("915018368@qq.com");
-		user.setPassword("");
-		userService.login(user);
+//		user.setEmail("915018368@qq.com");
+//		user.setPassword("");
+//		userService.login(user);
+		user.setName("郑伟华");
+		user.setEmail("929558536@qq.com");
+		user.setPassword("janem1030");
+		user.setTel("13074333920");
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
+		user.setRoleId(Constants.PERMISSION_ADMIN);
+		
+		logger.info(userService.addUser(user).getInfo());
+		
 	}
 }
