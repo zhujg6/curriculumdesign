@@ -13,6 +13,7 @@ import com.secondcar.dao.UserDao;
 import com.secondcar.mail.InitMail;
 import com.secondcar.mail.Mail;
 import com.secondcar.mail.MailUtil;
+import com.secondcar.query.QueryUser;
 import com.secondcar.services.UserService;
 
 public class UserServiceImpl implements UserService {
@@ -23,7 +24,26 @@ public class UserServiceImpl implements UserService {
 	private static UserDao userDao = (UserDao) BeanFactoryUtil.getBean("userDao");
 	
 	public ResultInfo addUser(User user) {
-		return null;
+		ResultInfo ret = new ResultInfo();
+		QueryUser qu = new QueryUser();
+		if(null!=user){
+			//判断邮箱是否已被使用
+			if(	-1 != qu.checkEmail(user.getEmail()).getCode() ){
+				ret.setCode(0);
+				ret.setInfo("注册成功");
+			}
+			else{
+				ret.setCode(-1);
+				ret.setInfo("该邮箱已经被注册");
+			}
+			//判断用户姓名是否为空
+			
+		}
+		else{
+			ret.setCode(-1);
+			ret.setInfo("注册失败,缺少对象");
+		}
+		return ret;
 	}
 
 	public ResultInfo login(User user) {
