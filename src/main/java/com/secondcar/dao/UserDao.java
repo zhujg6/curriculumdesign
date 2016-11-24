@@ -26,6 +26,6 @@ public interface UserDao {
 	 * @return
 	 */
 	
-	public List<User> queryUserByEmail(@Param(value="email")String email);
+	public List<User> queryUserByEmail(String email);
 	
 }
