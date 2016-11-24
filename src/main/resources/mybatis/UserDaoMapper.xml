@@ -87,4 +87,28 @@
 				</if>
 	</select>
 	
+	<update	id="updateUser" parameterType="com.secondcar.bean.User">
+	
+	update users 
+       set
+	<if test="name!=null and name!=''">
+		name=#{name} 
+	</if>
+	<if test="password!=null and password!=''">
+		,password=#{password} 
+	</if>
+	<if test="email!=null and email!=''">
+		,email=#{email} 
+	</if>	
+	<if test="tel!=null and tel!=''">
+		,tel=#{tel} 
+	</if>
+	<if test="roleId!=null and roleId!=''">	
+		,role_id=#{roleId} 
+	</if>
+	<if test="updateTime!=null and updateTime!=''">	
+		,update_time=#{updateTime}
+	</if>	 	
+       where id = #{id}
+	</update>
 </mapper>

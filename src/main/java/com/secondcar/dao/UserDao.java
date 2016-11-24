@@ -27,5 +27,11 @@ public interface UserDao {
 	 */
 	
 	public List<User> queryUserByEmail(String email);
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	public int updateUser(User user);
 	
 }
