@@ -25,7 +25,9 @@ public interface UserService {
 	public ResultInfo updateUserInfo(User user);
 	/**
 	 * 查询用户信息
+	 * @param id
+	 * @return
 	 */
-	public ResultInfo queryUserInfo(String id);
+	public ResultInfo queryUserInfoById(String id);
 	
 }
