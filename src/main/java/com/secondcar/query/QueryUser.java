@@ -10,16 +10,22 @@ import com.secondcar.dao.UserDao;
 public class QueryUser {
 
 	public ResultInfo checkEmail(String email){
-		ResultInfo ret= new ResultInfo();
-		UserDao userDao = (UserDao)BeanFactoryUtil.getBean("userDao");
-		List<User> userList = null;
-		userList=userDao.queryUserByEmail(email);
-		if(null!=userList && userList.size()>0){
-			ret.setCode(-1);
-		}else{
-			ret.setCode(0);
+		ResultInfo ret = new ResultInfo();
+		if(""!= email && null!=email){
+			
+			UserDao userDao = (UserDao)BeanFactoryUtil.getBean("userDao");
+			List<User> userList = null;
+			userList=userDao.queryUserByEmail(email);
+			if(null==userList && 0==userList.size()){
+				ret.setCode(0);
+			}else{
+				ret.setCode(-1);
+			}
 		}
-		return ret;
+			else{
+			ret.setCode(-1);
+			}
+			return ret;
 	}
 	
 }
