@@ -4,13 +4,16 @@ package com.secondcar.servicesImpl;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.alibaba.fastjson.JSONObject;
 import com.secondcar.bean.User;
 import com.secondcar.comm.BeanFactoryUtil;
 import com.secondcar.comm.Constants;
+import com.secondcar.comm.JsonPluginsUtil;
 import com.secondcar.comm.ResultInfo;
 import com.secondcar.dao.UserDao;
 import com.secondcar.mail.InitMail;
@@ -112,8 +115,20 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	public ResultInfo queryUserInfo(String id) {
-		return null;
+	public ResultInfo queryUserInfoByEmail(String email) {
+		ResultInfo ret = new ResultInfo();
+		if(null==email || ""==email){
+			ret.setCode(-1);
+			ret.setInfo("请输入邮箱");
+		}
+		else{
+			List<User> list = userDao.queryUserByEmail(email);
+			ret.setCode(0);
+			ret.setInfo("查询成功");
+			ret.setObj(list);
+			logger.info(JsonPluginsUtil.beanListToJson(list));
+		}
+		return ret;
 	}
 	public static void main(String[] args) {
 		UserService userService = new UserServiceImpl();
@@ -121,15 +136,19 @@ public class UserServiceImpl implements UserService {
 //		user.setEmail("915018368@qq.com");
 //		user.setPassword("");
 //		userService.login(user);
-		user.setName("郑伟华");
+//		user.setName("郑伟华");
 		user.setEmail("929558536@qq.com");
-		user.setPassword("janem1030");
-		user.setTel("13074333920");
-		user.setCreateTime(new Date());
-		user.setUpdateTime(new Date());
-		user.setRoleId(Constants.PERMISSION_ADMIN);
+//		user.setPassword("janem1030");
+//		user.setTel("13074333920");
+//		user.setCreateTime(new Date());
+//		user.setUpdateTime(new Date());
+//		user.setRoleId(Constants.PERMISSION_ADMIN);
 		
-		logger.info(userService.addUser(user).getInfo());
+//		logger.info(userService.addUser(user).getInfo());
+//		logger.info(userService.queryUserInfoByEmail(user.getEmail()).getInfo());
+		
+	userService.queryUserInfoByEmail(user.getEmail());
+	
 		
 	}
 }
